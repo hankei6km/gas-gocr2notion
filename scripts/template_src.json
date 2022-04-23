@@ -1,0 +1,50 @@
+{
+  "parent": {
+    "type": "page_id",
+    "page_id": "<PAGE_ID>"
+  },
+  "title": [
+    {
+      "type": "text",
+      "text": {
+        "content": "<DATABASE_NAME>",
+        "link": null
+      }
+    }
+  ],
+  "properties": {
+    "Name": {
+      "title": {}
+    },
+    "entryUpdated": {
+      "date": {}
+    },
+    "guid": {
+      "rich_text": {}
+    },
+    "mimeType": {
+      "select": {}
+    },
+    "type": {
+      "select": {}
+    },
+    "tags": {
+      "type": "multi_select",
+      "multi_select": {
+        "options": []
+      }
+    },
+    "excerpt": {
+      "rich_text": {}
+    },
+    "description": {
+      "rich_text": {}
+    },
+    "link": {
+      "url": {}
+    },
+    "modified": {
+      "date": {}
+    }
+  }
+}
