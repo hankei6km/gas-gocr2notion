@@ -1,0 +1,59 @@
+{
+  "name": "@hankei6km/gas-gocr2notion",
+  "version": "0.0.0",
+  "description": "TypeScript definitions for gas library @hankei6km/gas-gocr2notion",
+  "author": "hankei6km <hankei6km@gmail.com> (https://github.com/hankei6km)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hankei6km/gas-gocr2notion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hankei6km/gas-gocr2notion/issues"
+  },
+  "keywords": [
+    "gas",
+    "googledrive",
+    "notion"
+  ],
+  "files": [
+    "index.d.ts"
+  ],
+  "main": "",
+  "type": "module",
+  "types": "index.d.ts",
+  "scripts": {
+    "setup:clasp": "bash scripts/setup-clasp.sh && bash scripts/setup-clasprc.sh",
+    "cleanup:clasp": "bash scripts/cleanup-clasp.sh",
+    "clean": "npm run clean:build && npm run clean:test",
+    "clean:build": "rimraf index.d.ts build/*",
+    "clean:test": "rimraf test/build/*.spec.js",
+    "build": "npm run clean:build && bash scripts/build.sh",
+    "push": "bash scripts/clasp-with-auth.sh push",
+    "deploy": "bash scripts/clasp-with-auth.sh deploy",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test:build": "npm run clean:test && npm run build && bash scripts/test-build.sh && npm run test",
+    "posttest:build": "npm run clean:test"
+  },
+  "devDependencies": {
+    "@notionhq/client": "^1.0.4",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.2.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/google-apps-script": "^1.0.46",
+    "@types/jest": "^27.4.1",
+    "@types/urijs": "^1.19.19",
+    "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
+    "rollup-plugin-license": "^2.7.0",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "urijs": "^1.19.11"
+  }
+}
