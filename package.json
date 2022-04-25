@@ -29,7 +29,7 @@
     "clean:build": "rimraf index.d.ts build/*",
     "clean:test": "rimraf test/build/*.spec.js",
     "build": "npm run clean:build && bash scripts/build.sh",
-    "push": "bash scripts/clasp-with-auth.sh push",
+    "push": "bash scripts/clasp-with-auth.sh push --force",
     "deploy": "bash scripts/clasp-with-auth.sh deploy",
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "test:build": "npm run clean:test && npm run build && bash scripts/test-build.sh && npm run test",
