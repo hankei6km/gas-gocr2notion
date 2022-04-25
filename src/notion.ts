@@ -16,6 +16,16 @@ const apiUrlRetrieveDatabase = (database_id: string) =>
   `https://api.notion.com/v1/databases/${database_id}`
 const apiVersion = '2022-02-22'
 
+export function isErrRes(
+  res: GoogleAppsScript.URL_Fetch.HTTPResponse
+): boolean {
+  const code = Math.trunc(res.getResponseCode() / 100)
+  if (code === 4 || code === 5) {
+    return true
+  }
+  return false
+}
+
 export function createPage(apiKey: string, param: CreatePageParameters) {
   const res = UrlFetchApp.fetch(apiIUrlCreatePage, {
     method: 'post',
@@ -27,8 +37,7 @@ export function createPage(apiKey: string, param: CreatePageParameters) {
     payload: JSON.stringify(param),
     muteHttpExceptions: true
   })
-  const code = res.getResponseCode()
-  if (code / 100 == 4 || code / 100 === 5) {
+  if (isErrRes(res)) {
     throw res.getContentText()
   }
 }
@@ -49,7 +58,7 @@ export function updatePage(apiKey: string, param: UpdatePageParameters) {
       muteHttpExceptions: true
     })
     const code = res.getResponseCode()
-    if (code / 100 == 4 || code / 100 === 5) {
+    if (isErrRes(res)) {
       throw res.getContentText()
     }
   } catch (e) {
@@ -74,7 +83,7 @@ export function retriveDatabase(
       muteHttpExceptions: true
     })
     const code = res.getResponseCode()
-    if (code / 100 == 4 || code / 100 === 5) {
+    if (isErrRes(res)) {
       throw res.getContentText()
     }
     return JSON.parse(res.getContentText())
