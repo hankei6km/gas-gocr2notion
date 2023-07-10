@@ -198,7 +198,7 @@ describe('genCreatePageParameters()', () => {
       []
     )
     const mockFakeNow = new Date('2022-04-20').getTime()
-    Date.now = jest.fn<number, []>().mockReturnValue(mockFakeNow)
+    Date.now = jest.fn<() => number>().mockReturnValue(mockFakeNow)
 
     const params: [
       GocrToNotion.ParamsCmd,
