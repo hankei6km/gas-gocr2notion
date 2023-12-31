@@ -12,3 +12,6 @@ changelog:
     - title: Other Changes
       labels:
         - '*'
+  exclude:
+    authors:
+      - dependabot
