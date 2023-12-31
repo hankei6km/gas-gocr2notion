@@ -177,3 +177,11 @@ export function* genCreatePageParameters(
     yield item
   }
 }
+
+function _chunkString(str: String, chunkSize: number) : string[] {
+  const result = [];
+  for (let i = 0; i < str.length; i += chunkSize) {
+    result.push(str.slice(i, i + chunkSize));
+  }
+  return result;
+}
