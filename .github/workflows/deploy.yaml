@@ -4,6 +4,9 @@ on:
     types:
       - published
 
+permissions:
+  contents: write
+
 jobs:
   deploy-gas-project:
     # prerelease は除外.
