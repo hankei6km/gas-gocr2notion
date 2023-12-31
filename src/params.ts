@@ -1,4 +1,5 @@
 import {
+  BlockObjectRequest,
   CreatePageParameters,
   GetDatabaseResponse
 } from '@notionhq/client/build/src/api-endpoints'
@@ -57,6 +58,23 @@ function* _genCreatePageParameters(
   for (const [item, file] of ite) {
     // ゴミ箱にある場合、なにもしない
     if (!file.labels?.trashed) {
+      const chunkedTexts = _chunkString(item.text, 2000)
+      const children = chunkedTexts.map<BlockObjectRequest>(text => (
+        {
+          object: 'block',
+          type: 'paragraph',
+          paragraph: {
+            rich_text: [
+              {
+                type: 'text',
+                text: {
+                  content: text,
+                }
+              }
+            ]
+          }
+        }
+      ))
       const param: CreatePageParameters = {
         parent: {
           database_id: opts.database_id
@@ -66,22 +84,7 @@ function* _genCreatePageParameters(
             title: [{ type: 'text', text: { content: file.title || '' } }]
           }
         },
-        children: [
-          {
-            object: 'block',
-            type: 'paragraph',
-            paragraph: {
-              rich_text: [
-                {
-                  type: 'text',
-                  text: {
-                    content: item.text
-                  }
-                }
-              ]
-            }
-          }
-        ]
+        children: children,
       }
       if (
         propertiesModel?.entryUpdated &&
