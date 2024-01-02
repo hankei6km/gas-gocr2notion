@@ -105,7 +105,7 @@ export class OcrResutls {
   applyAll() {
     for (const res of this.results) {
       const file = DriveApp.getFileById(res.id)
-      file.setDescription(res.text)
+      file.setDescription(res.text.substring(0, 400))
     }
   }
 }
