@@ -112,7 +112,7 @@ export class OcrResutls {
 
 export function getOcrFileTransformer(
   opts: GocrToNotion.FileItemsOpts
-): GocrToNotion.FileTransfomer {
+): GocrToNotion.FileTransformer {
   return function* ocrFileTransformer(ite) {
     for (const [item, file] of ite) {
       // この時点でファイルのフィルタリングは行われているが、
