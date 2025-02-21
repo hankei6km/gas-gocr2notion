@@ -1,14 +1,17 @@
 changelog:
   categories:
+    - title: Breaking change
+      labels:
+        - 'sem-pr: breaking change'
+    - title: Features
+      labels:
+        - 'sem-pr: feat'
+    - title: Bug Fixes
+      labels:
+        - 'sem-pr: fix'
     - title: Types Changes
       labels:
         - types
-    - title: Features
-      labels:
-        - enhancement
-    - title: Bug Fixes
-      labels:
-        - bug
     - title: Other Changes
       labels:
         - '*'
