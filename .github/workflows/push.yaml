@@ -1,12 +1,11 @@
 name: Push to GAS project
 on:
+  pull_request:
   push:
     branches:
-      - '**'
-      - '!main'
+      - 'main'
     tags:
       - '!v*'
-
 jobs:
   push-to-gas:
     runs-on: ubuntu-latest
