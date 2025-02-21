@@ -1,0 +1,5 @@
+'types':
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              - 'src/index.js'
