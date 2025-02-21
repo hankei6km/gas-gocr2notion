@@ -8,9 +8,9 @@ import { GocrToNotion } from './gocr2notion.js'
 import { StoredItems } from './notion.js'
 import { changedItems, getOcrFileTransformer } from './util.js'
 
-export function* thumbParamTeransFormer(
-  ite: ReturnType<GocrToNotion.ParamTransfomer>
-): ReturnType<GocrToNotion.ParamTransfomer> {
+export function* thumbParamTransformer(
+  ite: ReturnType<GocrToNotion.ParamTransformer>
+): ReturnType<GocrToNotion.ParamTransformer> {
   for (const [paramCmd, item, file] of ite) {
     if (item.thumbnailLink) {
       const uri = new URI(item.thumbnailLink)
@@ -39,42 +39,41 @@ function* _genCreatePageParameters(
   opts: GocrToNotion.FileItemsOpts,
   propertiesModel: GetDatabaseResponse['properties'],
   items: GoogleAppsScript.Drive.Schema.Change[]
-): ReturnType<GocrToNotion.ParamTransfomer> {
-  const fileTransfomers = opts.fileTransfomers || [getOcrFileTransformer(opts)]
-  const filterTransformer: GocrToNotion.FileTransfomer = function* (ite) {
+): ReturnType<GocrToNotion.ParamTransformer> {
+  const fileTransformers = opts.fileTransformers ||
+    opts.fileTransfomers || [getOcrFileTransformer(opts)]
+  const filterTransformer: GocrToNotion.FileTransformer = function* (ite) {
     for (const i of ite) {
       yield i
     }
   }
-  let ite: ReturnType<GocrToNotion.FileTransfomer> = filterTransformer(
+  let ite: ReturnType<GocrToNotion.FileTransformer> = filterTransformer(
     changedItems(
       opts,
       items.filter(({ file }) => file).map(({ file }) => file || {})
     )
   )
-  for (const i of fileTransfomers) {
+  for (const i of fileTransformers) {
     ite = i(ite)
   }
   for (const [item, file] of ite) {
     // ゴミ箱にある場合、なにもしない
     if (!file.labels?.trashed) {
       const chunkedTexts = _chunkString(item.text, 2000)
-      const children = chunkedTexts.map<BlockObjectRequest>(text => (
-        {
-          object: 'block',
-          type: 'paragraph',
-          paragraph: {
-            rich_text: [
-              {
-                type: 'text',
-                text: {
-                  content: text,
-                }
+      const children = chunkedTexts.map<BlockObjectRequest>((text) => ({
+        object: 'block',
+        type: 'paragraph',
+        paragraph: {
+          rich_text: [
+            {
+              type: 'text',
+              text: {
+                content: text
               }
-            ]
-          }
+            }
+          ]
         }
-      ))
+      }))
       const param: CreatePageParameters = {
         parent: {
           database_id: opts.database_id
@@ -84,7 +83,7 @@ function* _genCreatePageParameters(
             title: [{ type: 'text', text: { content: file.title || '' } }]
           }
         },
-        children: children,
+        children: children
       }
       if (
         propertiesModel?.entryUpdated &&
@@ -166,14 +165,15 @@ export function* genCreatePageParameters(
   opts: GocrToNotion.FileItemsOpts,
   propertiesModel: GetDatabaseResponse['properties'],
   items: GoogleAppsScript.Drive.Schema.Change[]
-): ReturnType<GocrToNotion.ParamTransfomer> {
-  const paramTransfomers = opts.paramTransfomers || [thumbParamTeransFormer]
-  let ite: ReturnType<GocrToNotion.ParamTransfomer> = _genCreatePageParameters(
+): ReturnType<GocrToNotion.ParamTransformer> {
+  const paramTransformers = opts.paramTransformers ||
+    opts.paramTransfomers || [thumbParamTransformer]
+  let ite: ReturnType<GocrToNotion.ParamTransformer> = _genCreatePageParameters(
     opts,
     propertiesModel,
     items
   )
-  for (const i of paramTransfomers) {
+  for (const i of paramTransformers) {
     ite = i(ite)
   }
   for (const item of ite) {
@@ -181,10 +181,10 @@ export function* genCreatePageParameters(
   }
 }
 
-function _chunkString(str: String, chunkSize: number) : string[] {
-  const result = [];
+function _chunkString(str: String, chunkSize: number): string[] {
+  const result = []
   for (let i = 0; i < str.length; i += chunkSize) {
-    result.push(str.slice(i, i + chunkSize));
+    result.push(str.slice(i, i + chunkSize))
   }
-  return result;
+  return result
 }

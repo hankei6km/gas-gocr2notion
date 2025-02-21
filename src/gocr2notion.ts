@@ -5,7 +5,7 @@ import {
 import { createPage, retriveDatabase } from './notion.js'
 import {
   genCreatePageParameters,
-  thumbParamTeransFormer as _thumbParamTeransFormer
+  thumbParamTransformer as _thumbParamTransformer
 } from './params.js'
 import { normalizeItems, OcrResutls, pickScanFiles } from './util.js'
 
@@ -13,7 +13,7 @@ export namespace GocrToNotion {
   export type FilterMimeTypeTransformerOpts = {
     ignoreTypes: string[]
   }
-  export type FileTransfomer = (
+  export type FileTransformer = (
     ite: Generator<[FileItem, GoogleAppsScript.Drive.Schema.File]>
   ) => Generator<[FileItem, GoogleAppsScript.Drive.Schema.File]>
 
@@ -30,7 +30,7 @@ export namespace GocrToNotion {
     param: UpdatePageParameters
   }
   export type ParamsCmd = ParamsCmdCreate | ParamsCmdUpdate | ParamsCmdDelete
-  export type ParamTransfomer = (
+  export type ParamTransformer = (
     ite: Generator<[ParamsCmd, FileItem, GoogleAppsScript.Drive.Schema.File]>
   ) => Generator<[ParamsCmd, FileItem, GoogleAppsScript.Drive.Schema.File]>
 
@@ -42,11 +42,23 @@ export namespace GocrToNotion {
     removeOcrFile?: boolean
   }
 
+  /**
+   * Options for file items processing.
+   * 
+   * @property database_id - The ID of the database.
+   * @property ocrOpts - An array of OCR options.
+   * @property fileTransformers - An optional array of file transformers.
+   * @property paramTransformers - An optional array of parameter transformers.
+   * @property fileTransfomers - (Deprecated) A misspelled field name kept for backward compatibility.
+   * @property paramTransfomers - (Deprecated) A misspelled field name kept for backward compatibility.
+   */
   export type FileItemsOpts = {
     database_id: string
     ocrOpts: OcrOpts[]
-    fileTransfomers?: FileTransfomer[]
-    paramTransfomers?: ParamTransfomer[]
+    fileTransformers?: FileTransformer[]
+    paramTransformers?: ParamTransformer[]
+    fileTransfomers?: FileTransformer[]
+    paramTransfomers?: ParamTransformer[]
   }
 
   export type FileItem = {

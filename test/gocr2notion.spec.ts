@@ -89,24 +89,24 @@ jest.unstable_mockModule('../src/notion.js', () => {
 
 jest.unstable_mockModule('../src/params.js', () => {
   const mockGenCreatePageParameters = jest.fn()
-  const mockThumbParamTeransFormer = jest.fn()
+  const mockThumbParamTransformer = jest.fn()
   const reset = (items: any[]) => {
     mockGenCreatePageParameters.mockReset().mockImplementation(function* () {
       for (const i of items) {
         yield i
       }
     })
-    mockThumbParamTeransFormer.mockReset()
+    mockThumbParamTransformer.mockReset()
   }
 
   reset([])
   return {
     genCreatePageParameters: mockGenCreatePageParameters,
-    thumbParamTeransFormer: mockThumbParamTeransFormer,
+    thumbParamTransformer: mockThumbParamTransformer,
     _reset: reset,
     _getMocks: () => ({
       mockGenCreatePageParameters,
-      mockThumbParamTeransFormer
+      mockThumbParamTransformer
     })
   }
 })
@@ -121,7 +121,7 @@ const {
   mockSortedItems,
   mockSortedItemsMethods
 } = (mockNotion as any)._getMocks()
-const { mockGenCreatePageParameters, mockThumbParamTeransFormer } = (
+const { mockGenCreatePageParameters, mockThumbParamTransformer } = (
   mockParams as any
 )._getMocks()
 const { GocrToNotion: GrecentToNotion } = await import('../src/gocr2notion.js')
