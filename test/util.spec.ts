@@ -241,7 +241,6 @@ describe('changedItems()', () => {
         id: 'test-id-1',
         mimeType: 'application/vnd.google-apps.photo',
         modifiedDate: '2022-04-18',
-        description: 'test-description-1',
         thumbnailLink: 'test-thumbnail-link-1'
       },
       {
@@ -300,7 +299,6 @@ describe('changedItems()', () => {
           mimeType: 'application/vnd.google-apps.photo',
           type: 'photo',
           excerpt: '',
-          description: 'test-description-1',
           link: 'test-url-1',
           modified: '2022-04-18T00:00:00.000Z',
           thumbnailLink: 'test-thumbnail-link-1',
@@ -310,7 +308,6 @@ describe('changedItems()', () => {
           id: 'test-id-1',
           mimeType: 'application/vnd.google-apps.photo',
           modifiedDate: '2022-04-18',
-          description: 'test-description-1',
           thumbnailLink: 'test-thumbnail-link-1'
         }
       ],
@@ -321,7 +318,6 @@ describe('changedItems()', () => {
           type: 'text',
           guid: 'test-id-2',
           excerpt: '',
-          description: '',
           link: 'test-url-2',
           modified: '2022-04-17T00:00:00.000Z',
           text: ''

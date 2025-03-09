@@ -60,7 +60,6 @@ describe('genCreatePageParameters()', () => {
           mimeType: 'image/jpeg',
           type: 'jpeg',
           excerpt: 'test-content-1',
-          description: 'test-description-1',
           link: 'test-url-1',
           modified: '2022-04-18T00:00:00.000Z',
           thumbnailLink:
@@ -90,7 +89,6 @@ describe('genCreatePageParameters()', () => {
           mimeType: 'text/plain',
           type: 'text',
           excerpt: 'test-content-2',
-          description: 'test-description-2',
           link: 'test-url-2',
           modified: '2022-04-17T00:00:00.000Z',
           text: 'test-text-2',
@@ -185,9 +183,6 @@ describe('genCreatePageParameters()', () => {
           type: 'multi_select'
         },
         excerpt: { type: 'rich_text' },
-        description: {
-          type: 'rich_text'
-        },
         link: {
           type: 'url'
         },
@@ -248,11 +243,6 @@ describe('genCreatePageParameters()', () => {
               excerpt: {
                 rich_text: [
                   { type: 'text', text: { content: 'test-content-1' } }
-                ]
-              },
-              description: {
-                rich_text: [
-                  { type: 'text', text: { content: 'test-description-1' } }
                 ]
               },
               link: {
@@ -320,11 +310,6 @@ describe('genCreatePageParameters()', () => {
               excerpt: {
                 rich_text: [
                   { type: 'text', text: { content: 'test-content-2' } }
-                ]
-              },
-              description: {
-                rich_text: [
-                  { type: 'text', text: { content: 'test-description-2' } }
                 ]
               },
               link: {

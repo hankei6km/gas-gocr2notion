@@ -44,7 +44,7 @@ export namespace GocrToNotion {
 
   /**
    * Options for file items processing.
-   * 
+   *
    * @property database_id - The ID of the database.
    * @property ocrOpts - An array of OCR options.
    * @property fileTransformers - An optional array of file transformers.
@@ -67,7 +67,6 @@ export namespace GocrToNotion {
     mimeType: string
     type: string
     excerpt: string
-    description: string
     link: string
     modified: string
     thumbnailLink?: string | undefined
