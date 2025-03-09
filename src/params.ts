@@ -135,14 +135,6 @@ function* _genCreatePageParameters(
           rich_text: [{ type: 'text', text: { content: item.excerpt } }]
         }
       }
-      if (
-        propertiesModel?.description &&
-        propertiesModel?.description.type === 'rich_text'
-      ) {
-        param.properties.description = {
-          rich_text: [{ type: 'text', text: { content: item.description } }]
-        }
-      }
       if (propertiesModel?.link && propertiesModel?.link.type === 'url') {
         param.properties.link = {
           url: item.link

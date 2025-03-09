@@ -166,7 +166,6 @@ export function* changedItems(
       mimeType,
       type: getType(mimeType),
       excerpt: '',
-      description: item.description || '',
       link: fileObj.getUrl(),
       modified: new Date(item.modifiedDate || Date.now()).toISOString(),
       thumbnailLink: item.thumbnailLink,
