@@ -289,8 +289,8 @@ describe('changedItems()', () => {
       items.push(item)
     }
 
-    expect(mockFileById).toBeCalledWith('test-id-1')
-    expect(mockFileById).toBeCalledWith('test-id-2')
+    expect(mockFileById).toHaveBeenCalledWith('test-id-1')
+    expect(mockFileById).toHaveBeenCalledWith('test-id-2')
     expect(items).toEqual([
       [
         {

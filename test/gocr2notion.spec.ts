@@ -155,9 +155,9 @@ describe('GrecentToNotion.send()', () => {
       opts,
       { items: [] } // この値は使われない、各 _reset に渡した mockItems が使われる
     )
-    expect(mockCreatePage).toBeCalledTimes(1)
-    expect(mockCreatePage).toBeCalledWith('test-api-key', 'test-1')
-    expect(mockGenCreatePageParameters).toBeCalledWith(
+    expect(mockCreatePage).toHaveBeenCalledTimes(1)
+    expect(mockCreatePage).toHaveBeenCalledWith('test-api-key', 'test-1')
+    expect(mockGenCreatePageParameters).toHaveBeenCalledWith(
       opts,
       'test-properties',
       mockItems
@@ -197,24 +197,24 @@ describe('GrecentToNotion.ocr()', () => {
       ]
     }
     GrecentToNotion.ocr('test-api-key', opts)
-    expect(mockList).toBeCalledTimes(2)
-    expect(mockList).toBeCalledWith({
+    expect(mockList).toHaveBeenCalledTimes(2)
+    expect(mockList).toHaveBeenCalledWith({
       q: '"test-scan-folder-1" in parents',
       orderBy: 'createdDate desc'
     })
-    expect(mockList).toBeCalledWith({
+    expect(mockList).toHaveBeenCalledWith({
       q: '"test-scan-folder-2" in parents',
       orderBy: 'createdDate desc'
     })
-    expect(mockCreatePage).toBeCalledTimes(2)
-    expect(mockCreatePage).toBeCalledWith('test-api-key', 'test-1')
-    expect(mockCreatePage).toBeCalledWith('test-api-key', 'test-1')
-    expect(mockGenCreatePageParameters).toBeCalledWith(
+    expect(mockCreatePage).toHaveBeenCalledTimes(2)
+    expect(mockCreatePage).toHaveBeenCalledWith('test-api-key', 'test-1')
+    expect(mockCreatePage).toHaveBeenCalledWith('test-api-key', 'test-1')
+    expect(mockGenCreatePageParameters).toHaveBeenCalledWith(
       opts,
       'test-properties',
       mockItems
     )
-    expect(mockGenCreatePageParameters).toBeCalledWith(
+    expect(mockGenCreatePageParameters).toHaveBeenCalledWith(
       opts,
       'test-properties',
       mockItems
