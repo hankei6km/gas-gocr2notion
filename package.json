@@ -41,7 +41,7 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.0",
-    "@types/google-apps-script": "^1.0.46",
+    "@types/google-apps-script": "^2.0.0",
     "@types/jest": "^30.0.0",
     "@types/urijs": "^1.19.19",
     "jest": "^30.0.0",
