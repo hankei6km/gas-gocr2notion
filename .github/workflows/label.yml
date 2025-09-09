@@ -17,7 +17,7 @@ jobs:
       # scope
       - name: label-scope-by-changed-files
         if: ${{ github.event_name == 'pull_request_target' && github.event.action != 'edited' }}
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         with:
           configuration-path: .github/labeler.yml
       # sem-pr-type
